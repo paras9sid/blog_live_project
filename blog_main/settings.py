@@ -23,15 +23,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-6wrg(u6a0r(dqp8z3^=jg#p*p&(5@^1_p5&yb_+b*&0nh+8l^j'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
+DEBUG = True
 
-# ALLOWED_HOSTS = []
+ALLOWED_HOSTS = []
 
-# CUSTOM 404 ERROR PAGE
+# CUSTOM 404 ERROR PAGE - will modify css static files and css will not load
 
-DEBUG = False
+# DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+# ALLOWED_HOSTS = ['*']
 
 
 
