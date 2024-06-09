@@ -1,5 +1,6 @@
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render,redirect
 from assignments.models import About
+from blog_main.forms import RegistrationForm
 from .models import  Category,Blog
 from django.db.models import Q
 
@@ -83,3 +84,19 @@ def search(request):
     }
     
     return render(request,'search.html',context)
+
+def register(request):
+    if request.method=='POST':
+        form = RegistrationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('register')
+        
+    else:
+        form = RegistrationForm()
+        
+    context = {
+        'form':form,
+    }
+    return render(request,'register.html',context)
+
