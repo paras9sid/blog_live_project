@@ -1,5 +1,8 @@
 from django.shortcuts import get_object_or_404, render,redirect
-from .models import Category,Blog
+
+from assignments.models import About
+from social_links.models import SocialLinks
+from .models import  Category,Blog
 from django.http import HttpResponse
 
 def home(request):
@@ -14,11 +17,23 @@ def home(request):
     posts = Blog.objects.filter(is_featured=False).order_by('-updated_at')
     # print(posts)
     
+    #about us fetch    
+    try:
+        about = About.objects.get()
+    except:
+        about = None
+    
+    # fetch social links
+    social_links = SocialLinks.objects.all()
+    print(social_links)
+    
     
     context = {
         # 'categories':categories,
         'featured_posts':featured_posts,
         'posts':posts,
+        'about':about,
+        'social_links':social_links,
     }
     return render(request,'home.html',context)
 
@@ -58,4 +73,3 @@ def blogs(request,slug):
         'single_blog':single_blog
     }
     return render(request,'blogs.html',context)
-    

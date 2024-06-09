@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 class Category(models.Model):
-    category_name = models.CharField(max_length=50,unique=True) # unique = True - one by one name only
+    category_name = models.CharField(max_length=50,unique=True) # unique = True - one category by one name only
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     
@@ -36,3 +36,4 @@ class Blog(models.Model):
     
     def __str__(self):
         return self.title
+    
