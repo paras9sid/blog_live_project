@@ -1,6 +1,6 @@
 from django.contrib import admin
-from .models import SocialLinks
+from .models import SocialLink
 
 
 # Register your models here.
-admin.site.register(SocialLinks)
+admin.site.register(SocialLink)

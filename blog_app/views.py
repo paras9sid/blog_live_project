@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404, render,redirect
 
 from assignments.models import About
-from social_links.models import SocialLinks
+
 from .models import  Category,Blog
 from django.http import HttpResponse
 
@@ -23,9 +23,7 @@ def home(request):
     except:
         about = None
     
-    # fetch social links
-    social_links = SocialLinks.objects.all()
-    print(social_links)
+   
     
     
     context = {
@@ -33,7 +31,6 @@ def home(request):
         'featured_posts':featured_posts,
         'posts':posts,
         'about':about,
-        'social_links':social_links,
     }
     return render(request,'home.html',context)
 
