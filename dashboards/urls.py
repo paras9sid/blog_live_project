@@ -6,6 +6,8 @@ urlpatterns = [
     path('/',views.dashboard,name='dashboard'),
     path('/categories/',views.categories,name='categories'),
     
+    #CAtegory CRUD
+    
     # crud - create/add
     path('/categories/add/',views.add_category,name='add_category'),
     
@@ -14,6 +16,12 @@ urlpatterns = [
     
     # crud - delete
     path('/categories/delete/<int:pk>',views.delete_category,name='delete_category'),
+        
+    
+    #Posts - CRUD
+    
+    #create
+    path('/posts/',views.posts,name='posts'),
 
     
 ]
