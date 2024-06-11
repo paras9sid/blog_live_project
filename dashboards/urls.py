@@ -4,9 +4,11 @@ from . import views
 
 urlpatterns = [
     path('/',views.dashboard,name='dashboard'),
-    path('/categories/',views.categories,name='categories'),
     
-    #CAtegory CRUD
+    # Category CRUD
+    
+    # read
+    path('/categories/',views.categories,name='categories'),
     
     # crud - create/add
     path('/categories/add/',views.add_category,name='add_category'),
@@ -20,8 +22,11 @@ urlpatterns = [
     
     #Posts - CRUD
     
-    #create
+    #read
     path('/posts/',views.posts,name='posts'),
+    
+    #create
+    path('/posts/add/',views.add_post,name='add_post'),
 
     
 ]
