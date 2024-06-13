@@ -38,5 +38,6 @@ urlpatterns = [
     # users
     path('/users/',views.users,name='users'),
 
-    
+    # add user - Create
+    path('users/add/',views.add_user,name='add_user'),
 ]

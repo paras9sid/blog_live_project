@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404, render,redirect
 from blog_app.models import Blog, Category
 from django.contrib.auth.decorators import login_required
-from .forms import BlogPostForm, CategoryForm
+from .forms import BlogPostForm, CategoryForm , AddUserForm
 from django.template.defaultfilters import slugify
 from django.contrib.auth.models import User
 
@@ -129,6 +129,7 @@ def delete_post(request,pk):
     post.delete()
     return redirect('posts')
 
+#Read
 
 def users(request):
     users = User.objects.all()
@@ -136,3 +137,17 @@ def users(request):
         'users':users,
     }
     return render(request,'dashboard/users.html',context)
+
+
+#CReate
+def add_user(request):
+    if request.method == 'POST':
+        form = AddUserForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('users')
+    form = AddUserForm()
+    context = {
+        'form':form,
+    }
+    return render(request,'dashboard/add_user.html',context)
