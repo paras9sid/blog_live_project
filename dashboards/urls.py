@@ -35,6 +35,8 @@ urlpatterns = [
     path('posts/delete/<int:pk>',views.delete_post,name='delete_post'),
     
     
+    # users
+    path('/users/',views.users,name='users'),
 
     
 ]
