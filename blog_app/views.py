@@ -1,7 +1,7 @@
-from django.shortcuts import get_object_or_404, render,redirect
+from django.shortcuts import get_object_or_404, render,redirect,HttpResponseRedirect
 from assignments.models import About
 from blog_main.forms import RegistrationForm
-from .models import  Category,Blog
+from .models import  Category,Blog,Comment
 from django.db.models import Q
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import auth
@@ -23,9 +23,6 @@ def home(request):
         about = About.objects.get()
     except:
         about = None
-    
-   
-    
     
     context = {
         # 'categories':categories,
@@ -67,8 +64,26 @@ def posts_by_category(request,pk):
 def blogs(request,slug):
     #fetch post exactly
     single_blog = get_object_or_404(Blog,slug=slug,status="Published")
+    
+    #add comment
+    if request.method=='POST':
+        comment = Comment()
+        comment.user = request.user
+        comment.blog = single_blog
+        comment.comment = request.POST['comment']
+        comment.save()
+        return HttpResponseRedirect(request.path_info)
+        
+        
+    # Comments
+    comments = Comment.objects.filter(blog = single_blog)
+    # print("Comment -> ", comments)
+    comment_count = comments.count()
+    
     context = {
-        'single_blog':single_blog
+        'single_blog':single_blog,
+        'comments':comments,
+        'comment_count':comment_count,
     }
     return render(request,'blogs.html',context)
 
