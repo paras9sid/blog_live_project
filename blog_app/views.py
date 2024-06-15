@@ -1,4 +1,5 @@
 from django.shortcuts import get_object_or_404, render,redirect,HttpResponseRedirect
+from django.http import HttpResponse
 from assignments.models import About
 from blog_main.forms import RegistrationForm
 from .models import  Category,Blog,Comment
@@ -36,10 +37,12 @@ def posts_by_category(request,pk):
     # print(pk) # working checked 
     # return HttpResponse('<h2>Posts by category!!</h2>') # working checked
     
+
     # fetch the post belong to id/pk of category
     posts = Blog.objects.filter(status='Published', category=pk)
     # return HttpResponse(posts) working checked - status check in admin category
-    
+
+        
     # 1 - try-except block for error page
     # try:
     #     # fetch category name to be printed on category page- dynamic
@@ -56,14 +59,19 @@ def posts_by_category(request,pk):
         'posts':posts,
         'pk':pk,
         'category':category,
+        # 'posts2':posts2,
     }
     
     return render(request,'posts_by_category.html',context)
 
 
 def blogs(request,slug):
-    #fetch post exactly
-    single_blog = get_object_or_404(Blog,slug=slug,status="Published")
+    
+    try:
+        #fetch post exactly
+        single_blog = get_object_or_404(Blog,slug=slug,status="Published")
+    except:
+        return HttpResponse("<h2>Blog not published</h2>")
     
     #add comment
     if request.method=='POST':
@@ -107,7 +115,7 @@ def register(request):
         form = RegistrationForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('register')
+            return redirect('login')
         
     else:
         form = RegistrationForm()
