@@ -51,7 +51,7 @@ INSTALLED_APPS = [
     "crispy_bootstrap5",
     'dashboards',
     'django_recaptcha',
-
+    'pass_res',
     
 ]
 
@@ -64,8 +64,8 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 # Recaptcha
 
-RECAPTCHA_PUBLIC_KEY = '6LebiPkpAAAAAG2NYVGxIJC3c3p6jPJxZ8e1-xod'
-RECAPTCHA_PRIVATE_KEY = '6LebiPkpAAAAAKQI6fqPMgZzPauBiNUkB1sDpC_Q'
+RECAPTCHA_PUBLIC_KEY = ''
+RECAPTCHA_PRIVATE_KEY = ''
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -172,7 +172,7 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = '587'
 EMAIL_USE_TLS = 'True'
 
-EMAIL_HOST_USER = 'sidharthjainp9@gmail.com'    # gmail email address
-EMAIL_HOST_PASSWORD = 'sxbg kodq lqse zzyg'     # APP password - gmail account in security below 2fa section
+EMAIL_HOST_USER = ''    # gmail email address
+EMAIL_HOST_PASSWORD = ''     # APP password - gmail account in security below 2fa section
 
 DEFAULT_FROM_EMAIL = 'sidharthjainp9@gmail.com' # gmail email address
