@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-# CUSTOM 404 ERROR PAGE - will modify css static files and css will not load
+# CUSTOM 404 ERROR PAGE - will modify css static files and css will not load- When Deploy-Production server only
 
 # DEBUG = False
 

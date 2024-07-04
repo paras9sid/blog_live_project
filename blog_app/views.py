@@ -17,7 +17,7 @@ def posts_by_category(request,pk):
     #     category = Category.objects.get(pk=pk)
     # except:  # noqa: E722 - 
     #     # try block failed - category doesn't exists - redirect then to homepage
-    #       404 page to render if debug settings changed for deployment server. not inproduction server
+    #       404 page to render if debug settings changed for deployment/production server. not in development server
     #     return redirect('home')
     
     # 2 - get object or 404 page - builtin django - 404 error page
