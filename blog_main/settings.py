@@ -27,6 +27,13 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# CUSTOM 404 ERROR PAGE - will modify css static files and css will not load- When Deploy-Production server only
+
+# DEBUG = False
+
+# ALLOWED_HOSTS = ['*']
+
+
 
 # Application definition
 
@@ -63,6 +70,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'blog_app.context_processors.get_categories',
             ],
         },
     },

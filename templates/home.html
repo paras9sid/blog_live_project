@@ -1,3 +1,6 @@
+
+{% extends 'base.html' %}
+
 {% load static %}
 
 <!DOCTYPE html>
@@ -38,6 +41,8 @@
         </nav>
       </div>
 
+
+{% block content %}
     
 <!-- Header background featured post - only 1 to display here -->
 {% for post in featured_posts %}
@@ -46,7 +51,7 @@
         <div class="col-md-8 px-0">
           <h1 class="display-4 font-italic">{{post.title}}</h1>
           <p class="lead my-3">{{post.short_description | truncatewords:10}}</p>
-          <p class="lead mb-0"><a href="#" class="text-white font-weight-bold">Continue reading...</a></p>
+          <p class="lead mb-0"><a href="{% url 'blogs' post.slug %}" class="text-white font-weight-bold">Continue reading...</a></p>
         </div>
     </div>
   {% endif %}
@@ -62,6 +67,9 @@
       <div class="col-md-6">
         <div class="card border-0" >
           <div class="card-body">
+            <h3><a href="{% url 'blogs' post.slug %}" class="text-dark">{{post.title}}</a></h3>
+            <!-- timesince for displaying time in minuted -- not proper time created post -->
+
             <h3>{{post.title}}</h3>
             <!-- timesince for displaying time in minutes -- not proper time created post -->
             <small class="mb-1 text-muted">{{post.created_at | timesince}} ago | {{post.author}}</small>
@@ -71,6 +79,7 @@
       </div>
     {% endif %}
   {% endfor %}
+
   
 </div>
 
@@ -79,18 +88,21 @@
 <h3 class="test-uppercase text-warning" style="letter-spacing: 2px;">Recent Articles</h3>
   <main role="main" class="container p-0">
     <div class="row">
+      
       <!-- Sample post sections- posts which are not featured -->
       <div class="col-md-8 blog-main">
+
         {%for post in posts %}
           <div class="card border-0" >
             <div class="card-body">
-              <h3>{{post.title}}</h3>
+              <h3><a href="{% url 'blogs' post.slug %}" class="text-dark">{{post.title}}</a></h3>
               <!-- timesince for displaying time in minuted -- not proper time created post -->
               <small class="mb-1 text-muted">{{post.created_at | timesince}} ago | {{post.author}}</small>
               <p class="card-text">{{post.short_description | truncatewords:10}}</p>
             </div>
           </div>
         {% endfor %}
+
       </div>
       <!-- /.blog-main -->
 
@@ -114,8 +126,5 @@
   </main><!-- /.container -->
 
 </div>
-<footer class="blog-footer">
-  <p>Django blog built by <a href="#">Sidharth Jain</a></p>
-</footer>
-</body>
-</html>
+
+{% endblock %}
