@@ -53,16 +53,17 @@
 {% endfor %}
 
 
-<!--  more featured posts  -->
+<!--  More featured posts  -->
 <h3 class="test-uppercase text-warning" style="letter-spacing: 2px;">Featured Posts</h3>
 <div class="row mb-2">
+
   {% for post in featured_posts %}
     {% if not forloop.first %}
       <div class="col-md-6">
         <div class="card border-0" >
           <div class="card-body">
             <h3>{{post.title}}</h3>
-            <!-- timesince for displaying time in minuted -- not proper time created post -->
+            <!-- timesince for displaying time in minutes -- not proper time created post -->
             <small class="mb-1 text-muted">{{post.created_at | timesince}} ago | {{post.author}}</small>
             <p class="card-text">{{post.short_description | truncatewords:10 }}</p>
           </div>
@@ -70,6 +71,7 @@
       </div>
     {% endif %}
   {% endfor %}
+  
 </div>
 
 
