@@ -33,6 +33,7 @@
       </div>
     {% endif %}
   {% endfor %}
+
 </div>
 
 
@@ -40,8 +41,10 @@
 <h3 class="test-uppercase text-warning" style="letter-spacing: 2px;">Recent Articles</h3>
   <main role="main" class="container p-0">
     <div class="row">
+      
       <!-- Sample post sections- posts which are not featured -->
       <div class="col-md-8 blog-main">
+
         {%for post in posts %}
           <div class="card border-0" >
             <div class="card-body">
@@ -52,6 +55,7 @@
             </div>
           </div>
         {% endfor %}
+
       </div>
       <!-- /.blog-main -->
 

@@ -2,25 +2,6 @@ from django.shortcuts import get_object_or_404, render,redirect
 from .models import Category,Blog
 from django.http import HttpResponse
 
-def home(request):
-    #fetch all categories defined dynamically in admin panel
-    # categories = Category.objects.all() 
-    #- commented above lines as context_processors used
-    # print(categories)
-    
-    featured_posts = Blog.objects.filter(is_featured = True,status='Published')
-    # print(featured_posts)
-    
-    posts = Blog.objects.filter(is_featured=False).order_by('-updated_at')
-    # print(posts)
-    
-    
-    context = {
-        # 'categories':categories,
-        'featured_posts':featured_posts,
-        'posts':posts,
-    }
-    return render(request,'home.html',context)
 
 def posts_by_category(request,pk):
     # print(pk) # working checked 
@@ -36,6 +17,7 @@ def posts_by_category(request,pk):
     #     category = Category.objects.get(pk=pk)
     # except:  # noqa: E722 - 
     #     # try block failed - category doesn't exists - redirect then to homepage
+    #       404 page to render if debug settings changed for deployment server. not inproduction server
     #     return redirect('home')
     
     # 2 - get object or 404 page - builtin django - 404 error page
