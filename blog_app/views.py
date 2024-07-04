@@ -40,4 +40,3 @@ def blogs(request,slug):
         'single_blog':single_blog
     }
     return render(request,'blogs.html',context)
-    
