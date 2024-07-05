@@ -16,19 +16,27 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-from blog_app import views
+from django.urls import path
+from . import views
 from django.conf import settings
 from django.conf.urls.static import static
+from blog_app import views as BlogsView
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    
+    #home + posts rendered views
     path('',views.home,name='home'),
+    
+    #category path
     path('category/',include('blog_app.urls')),
+
     path('blogs/<slug:slug>/',views.blogs,name='blogs'),
     # Search endpoint
     path('blogs/search/',views.search,name='search'),
     path('register/',views.register,name='register'),
     path('login/',views.login,name='login'),
     path('logout/',views.logout,name='logout'),
+
 ] + static( settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
