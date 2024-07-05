@@ -31,7 +31,9 @@ urlpatterns = [
     
     #category path
     path('category/',include('blog_app.urls')),
-    
-    #slug
-    path('<slug:slug>/',BlogsView.blogs,name='blogs'),
+
+    path('<slug:slug>/',views.blogs,name='blogs'),
+    # Search endpoint
+    path('blogs/search/',views.search,name='search'),
+
 ] + static( settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
