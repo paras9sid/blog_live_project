@@ -29,12 +29,22 @@ urlpatterns = [
     path('posts/add/',views.add_post,name='add_post'),
     
     # edit/update
-    path('posts/edit/<int:pk>',views.edit_post,name='edit_post'),
+    path('posts/edit/<int:pk>/',views.edit_post,name='edit_post'),
     
     # delete
-    path('posts/delete/<int:pk>',views.delete_post,name='delete_post'),
+    path('posts/delete/<int:pk>/',views.delete_post,name='delete_post'),
     
     
+    # users
+    path('/users/',views.users,name='users'),
 
+    # add user - Create
+    path('users/add/',views.add_user,name='add_user'),
+    
+    # Update/edit
+    path('users/edit/<int:pk>/',views.edit_user,name='edit_user'),
+    
+    # delete
+    path('users/delete/<int:pk>/',views.delete_user,name='delete_user'),
     
 ]
