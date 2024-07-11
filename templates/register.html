@@ -8,6 +8,7 @@
 <form action="{% url 'register' %}" method="POST" style="width: 500px; margin:auto;">
     {% csrf_token %}
     {{form | crispy}}
+    {{captcha}}
     <button type="submit" class="btn btn-warning">Submit</button>
 </form>
 
