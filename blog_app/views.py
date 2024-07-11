@@ -6,6 +6,8 @@ from .models import  Category,Blog,Comment
 from django.db.models import Q
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import auth
+from django.core.mail import send_mail
+from django.conf import settings
 
 def home(request):
     #fetch all categories defined dynamically in admin panel
@@ -115,7 +117,9 @@ def register(request):
     if request.method=='POST':
         form = RegistrationForm(request.POST)
         if form.is_valid():
+            current_user = form.save(commit=False)
             form.save()
+            send_mail("Welcome to Django Blogs","Congratulations on creating account!!",settings.DEFAULT_FROM_EMAIL,[current_user.email])
             return redirect('login')
         
     else:

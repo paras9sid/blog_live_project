@@ -46,5 +46,6 @@ urlpatterns = [
     
     # delete
     path('users/delete/<int:pk>/',views.delete_user,name='delete_user'),
+
     
 ]
