@@ -3,12 +3,12 @@ from . import views
 
 
 urlpatterns = [
-    path('/',views.dashboard,name='dashboard'),
+    path('',views.dashboard,name='dashboard'),
     
     # Category CRUD
     
     # read
-    path('/categories/',views.categories,name='categories'),
+    path('categories/',views.categories,name='categories'),
     
     # crud - create/add
     path('categories/add/',views.add_category,name='add_category'),
@@ -23,7 +23,7 @@ urlpatterns = [
     # Posts - CRUD
     
     # read
-    path('/posts/',views.posts,name='posts'),
+    path('posts/',views.posts,name='posts'),
     
     # create
     path('posts/add/',views.add_post,name='add_post'),
@@ -36,7 +36,7 @@ urlpatterns = [
     
     
     # users
-    path('/users/',views.users,name='users'),
+    path('users/',views.users,name='users'),
 
     # add user - Create
     path('users/add/',views.add_user,name='add_user'),

@@ -2,12 +2,6 @@ from django.shortcuts import get_object_or_404, render,redirect
 from blog_app.models import Category,Blog
 from django.http import HttpResponse
 
-def home(request):
-    #fetch all categories defined dynamically in admin panel
-    # categories = Category.objects.all() 
-    #- commented above lines as context_processors used
-from django.shortcuts import render
-from blog_app.models import Category,Blog
 
 def home(request):
     
@@ -26,12 +20,6 @@ def home(request):
     
     context = {
         # 'categories':categories,
-        'featured_posts':featured_posts,
-        'posts':posts,
-    }
-    return render(request,'home.html',context)
-
-        'categories':categories,
         'featured_posts':featured_posts,
         'posts':posts,
     }

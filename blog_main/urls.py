@@ -32,12 +32,12 @@ urlpatterns = [
     #category path
     path('category/',include('blog_app.urls')),
 
-    path('blogs/<slug:slug>/',views.blogs,name='blogs'),
+    path('blogs/<slug:slug>/',BlogsView.blogs,name='blogs'),
     # Search endpoint
-    path('blogs/search/',views.search,name='search'),
-    path('register/',views.register,name='register'),
-    path('login/',views.login,name='login'),
-    path('logout/',views.logout,name='logout'),
+    path('blogs/search/',BlogsView.search,name='search'),
+    path('register/',BlogsView.register,name='register'),
+    path('login/',BlogsView.login,name='login'),
+    path('logout/',BlogsView.logout,name='logout'),
 
     path('dashboard/',include('dashboards.urls')),
     path('pass/',include('pass_res.urls')),

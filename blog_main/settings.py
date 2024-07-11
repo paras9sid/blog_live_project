@@ -12,6 +12,12 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 
+import environ
+
+env = environ.Env()
+environ.Env.read_env()
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -20,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-6wrg(u6a0r(dqp8z3^=jg#p*p&(5@^1_p5&yb_+b*&0nh+8l^j'
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -64,8 +70,8 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 # Recaptcha
 
-RECAPTCHA_PUBLIC_KEY = ''
-RECAPTCHA_PRIVATE_KEY = ''
+RECAPTCHA_PUBLIC_KEY = env('RECAPTCHA_PUBLIC_KEY')
+RECAPTCHA_PRIVATE_KEY = env('RECAPTCHA_PRIVATE_KEY')
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -106,7 +112,7 @@ WSGI_APPLICATION = 'blog_main.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': env('DB_NAME'),
     }
 }
 
@@ -175,7 +181,7 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = '587'
 EMAIL_USE_TLS = 'True'
 
-EMAIL_HOST_USER = ''    # gmail email address
-EMAIL_HOST_PASSWORD = ''     # APP password - gmail account in security below 2fa section
+EMAIL_HOST_USER = env('EMAIL_HOST_USER')    # gmail email address
+EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')     # APP password - gmail account in security below 2fa section
 
-DEFAULT_FROM_EMAIL = 'sidharthjainp9@gmail.com' # gmail email address
+DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL') # gmail email address

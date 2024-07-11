@@ -18,7 +18,7 @@ def home(request):
     featured_posts = Blog.objects.filter(is_featured = True,status='Published')
     # print(featured_posts)
     
-    posts = Blog.objects.filter(is_featured=False).order_by('-updated_at')
+    posts = Blog.objects.filter(is_featured=False, status='Published').order_by('-updated_at')
     # print(posts)
     
     #about us fetch    
@@ -70,11 +70,8 @@ def posts_by_category(request,pk):
 
 def blogs(request,slug):
     
-    try:
-        #fetch post exactly
-        single_blog = get_object_or_404(Blog,slug=slug,status="Published")
-    except:
-        return HttpResponse("<h2>Blog not published</h2>")
+    single_blog = get_object_or_404(Blog,slug=slug,status="Published")
+    
     
     #add comment
     if request.method=='POST':

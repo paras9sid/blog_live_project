@@ -69,9 +69,6 @@
           <div class="card-body">
             <h3><a href="{% url 'blogs' post.slug %}" class="text-dark">{{post.title}}</a></h3>
             <!-- timesince for displaying time in minuted -- not proper time created post -->
-
-            <h3>{{post.title}}</h3>
-            <!-- timesince for displaying time in minutes -- not proper time created post -->
             <small class="mb-1 text-muted">{{post.created_at | timesince}} ago | {{post.author}}</small>
             <p class="card-text">{{post.short_description | truncatewords:10 }}</p>
           </div>
@@ -104,7 +101,6 @@
 
           {% endfor %}
 
-        {% endfor %}
 
 
       </div>
