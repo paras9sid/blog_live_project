@@ -43,10 +43,10 @@ def posts_by_category(request,pk):
 
 def blogs(request,slug):
     
-    single_blog = get_object_or_404(Blog,slug=slug,status="Published")
-    
-    
-    #add comment
+    single_blog = get_object_or_404(Blog, slug=slug, status="Published")
+    print(single_blog)
+        
+    # #add comment
     if request.method=='POST':
         comment = Comment()
         comment.user = request.user
@@ -54,8 +54,7 @@ def blogs(request,slug):
         comment.comment = request.POST['comment']
         comment.save()
         return HttpResponseRedirect(request.path_info)
-        
-        
+            
     # Comments
     comments = Comment.objects.filter(blog = single_blog)
     # print("Comment -> ", comments)
@@ -70,7 +69,7 @@ def blogs(request,slug):
 
 def search(request):
     keyword = request.GET.get('keyword')
-    # print('keywrod=> ',keyword)
+    print('keyword=> ',keyword)
     
     #title = for title search keyword - ut for body search keyword description/body-  OR operator Q objects -- comma(,)-and operator
     blogs = Blog.objects.filter(Q(title__icontains = keyword) | Q(short_description__icontains = keyword) | Q(blog_body__icontains = keyword) , status = "Published")

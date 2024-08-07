@@ -25,8 +25,8 @@
                     <p class="fs-5 mb-4">{{single_blog.blog_body}}</p>
 
                     <!-- Comments -->
-                     <h4>Comments ({{ comment_count }})</h4>
-                     {% if comments %}
+                    <h4>Comments ({{ comment_count }})</h4>
+                    {% if comments %}
                         {% for i in comments %}
                             <div class="card mt-1">
                                 <div class="card-body">
@@ -75,7 +75,7 @@
                                 {% endfor %}
                             </ul>
                         </div>
-                      
+                
                     </div>
                 </div>
             </div>
