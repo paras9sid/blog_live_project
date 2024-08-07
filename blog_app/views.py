@@ -14,7 +14,7 @@ def posts_by_category(request,pk):
     
 
     # fetch the post belong to id/pk of category
-    posts = Blog.objects.filter(status='Published', category=pk)
+    posts = Blog.objects.filter(status='Published', category=pk).order_by('-updated_at')
     # return HttpResponse(posts) working checked - status check in admin category
 
         
