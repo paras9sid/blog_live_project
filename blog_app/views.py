@@ -46,24 +46,24 @@ def blogs(request,slug):
     single_blog = get_object_or_404(Blog, slug=slug, status="Published")
     print(single_blog)
         
-    # #add comment
-    if request.method=='POST':
-        comment = Comment()
-        comment.user = request.user
-        comment.blog = single_blog
-        comment.comment = request.POST['comment']
-        comment.save()
-        return HttpResponseRedirect(request.path_info)
+    # # #add comment
+    # if request.method=='POST':
+    #     comment = Comment()
+    #     comment.user = request.user
+    #     comment.blog = single_blog
+    #     comment.comment = request.POST['comment']
+    #     comment.save()
+    #     return HttpResponseRedirect(request.path_info)
             
-    # Comments
-    comments = Comment.objects.filter(blog = single_blog)
-    # print("Comment -> ", comments)
-    comment_count = comments.count()
+    # # Comments
+    # comments = Comment.objects.filter(blog = single_blog)
+    # # print("Comment -> ", comments)
+    # comment_count = comments.count()
     
     context = {
         'single_blog':single_blog,
-        'comments':comments,
-        'comment_count':comment_count,
+    #     'comments':comments,
+    #     'comment_count':comment_count,
     }
     return render(request,'blogs.html',context)
 

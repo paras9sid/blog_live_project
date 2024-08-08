@@ -16,7 +16,6 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-from django.urls import path
 from . import views
 from django.conf import settings
 from django.conf.urls.static import static
@@ -32,7 +31,8 @@ urlpatterns = [
     #category path
     path('category/',include('blog_app.urls')),
 
-    path('<slug:slug>/',BlogsView.blogs,name='blogs'),
+    path('blogs/<slug:slug>/',BlogsView.blogs,name='blogs'),
+    
     # Search endpoint
     path('blogs/search/',BlogsView.search,name='search'),
     path('register/',BlogsView.register,name='register'),
@@ -43,7 +43,7 @@ urlpatterns = [
     path('pass/',include('pass_res.urls')),
 
 
-    path('dashboard',include('dashboards.urls')),
+    # path('dashboard',include('dashboards.urls')),
 
 
 ] + static( settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

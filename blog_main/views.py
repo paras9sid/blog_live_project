@@ -4,10 +4,6 @@ from assignments.models import About
 
 
 def home(request):
-    #fetch all categories defined dynamically in admin panel
-    # categories = Category.objects.all() 
-    #- commented above lines as context_processors used
-    # print(categories)
     
     featured_posts = Blog.objects.filter(is_featured = True,status='Published')
     # print(featured_posts)
@@ -15,7 +11,7 @@ def home(request):
     posts = Blog.objects.filter(is_featured=False, status='Published').order_by('-updated_at')
     # print(posts)
     
-    #about us fetch    
+    #about us fetch    - get will fetch only 1 single data and try will only work with get
     try:
         about = About.objects.get()
     except:
