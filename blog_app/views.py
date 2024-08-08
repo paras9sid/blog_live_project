@@ -1,11 +1,8 @@
 from django.shortcuts import get_object_or_404, render,redirect,HttpResponseRedirect
-from blog_main.forms import RegistrationForm
 from .models import  Category,Blog,Comment
 from django.db.models import Q
-from django.contrib.auth.forms import AuthenticationForm
-from django.contrib import auth
-from django.core.mail import send_mail
-from django.conf import settings
+
+
 
 
 def posts_by_category(request,pk):
@@ -68,8 +65,12 @@ def blogs(request,slug):
     return render(request,'blogs.html',context)
 
 def search(request):
+    
     keyword = request.GET.get('keyword')
-    print('keyword=> ',keyword)
+    if keyword:
+        print('keyword=> ',keyword)
+    else:
+        print('not valid')
     
     #title = for title search keyword - ut for body search keyword description/body-  OR operator Q objects -- comma(,)-and operator
     blogs = Blog.objects.filter(Q(title__icontains = keyword) | Q(short_description__icontains = keyword) | Q(blog_body__icontains = keyword) , status = "Published")
@@ -82,44 +83,8 @@ def search(request):
     
     return render(request,'search.html',context)
 
-def register(request):
-    if request.method=='POST':
-        form = RegistrationForm(request.POST)
-        if form.is_valid():
-            current_user = form.save(commit=False)
-            form.save()
-            send_mail("Welcome to Django Blogs","Congratulations on creating an account!!",settings.DEFAULT_FROM_EMAIL,[current_user.email])
-            return redirect('login')
-        
-    else:
-        form = RegistrationForm()
-        
-    context = {
-        'form':form,
-    }
-    return render(request,'register.html',context)
 
-def login(request):
-    
-    if request.method=='POST':
-        form = AuthenticationForm(request,request.POST)
-        if form.is_valid():
-            username = form.cleaned_data['username']
-            password = form.cleaned_data['password']
-            
-            user = auth.authenticate(username=username,password=password)
-            if user is not None:
-                auth.login(request,user)
-            return redirect('dashboard')
-    else:
-        form = AuthenticationForm()
-    
-    context = {
-        'form':form,
-    }
-    return render(request,'login.html',context)
 
-def logout(request):
-    auth.logout(request)
-    return redirect('home')
+
+
 
