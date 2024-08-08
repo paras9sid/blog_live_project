@@ -49,6 +49,7 @@
         {% for cat in categories %}
             <a class="p-2 text-muted" href="{% url 'posts_by_category' cat.pk %}">{{cat.category_name}}</a>
         {% endfor %}
+
         </nav>
     </div>
 
