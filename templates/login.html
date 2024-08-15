@@ -9,9 +9,12 @@
     {% csrf_token %}
     {{form | crispy}}
 
-    <button type="submit" class="btn btn-warning">Login</button>
-    <br><br>
-    <a class="btn btn-primary" href="{% url 'reset_password' %}" role="button">Reset Password</a>
+    <button type="submit" class="btn btn-warning btn-block">Login</button>
+    <a class="btn btn-primary btn-block" href="{% url 'reset_password' %}" role="button">Reset Password</a>
+    <br>
+    <input type="text" placeholder="Demo login details : uname:demo_user, pass:, View Rights Only" class="btn-block dark">
 </form>
+
+<br><br><br>
 
 {% endblock %}

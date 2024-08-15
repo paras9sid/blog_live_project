@@ -29,17 +29,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
 
-ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = []
 
 # CUSTOM 404 ERROR PAGE - will modify css static files and css will not load- When Deploy-Production server only
 
-# DEBUG = False
+DEBUG = False
 
-# ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['*']
 
-
+# CSRF_TRUSTED_ORIGINS = []
 
 # Application definition
 
@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'dashboards',
     'django_recaptcha',
     'pass_res',
+    'storages',
     
 ]
 
@@ -109,10 +110,31 @@ WSGI_APPLICATION = 'blog_main.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': env('DB_NAME'),
+#     }
+# }
+
+# RDS / PostgreSQL database configuration
+
+
 DATABASES = {
+
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': env('DB_NAME'),
+
+        'ENGINE': 'django.db.backends.postgresql',
+
+        'NAME': env('NAME'),
+
+        'USER': env('USER'),
+
+        'PASSWORD': env('PASSWORD'),
+
+        'HOST': env('HOST'),
+
+        'PORT': '5432',
     }
 }
 
@@ -185,3 +207,32 @@ EMAIL_HOST_USER = env('EMAIL_HOST_USER')    # gmail email address
 EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')     # APP password - gmail account in security below 2fa section
 
 DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL') # gmail email address
+
+
+# AWS configuration
+
+# AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID') # - Enter your AWS Access Key ID HERE
+# AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY') # - Enter your AWS Secret Access Key ID HERE
+
+# Django 4.2 > Storage configuration for Amazon S3
+
+AWS_STORAGE_BUCKET_NAME = env('AWS_STORAGE_BUCKET_NAME') # - Enter your S3 bucket name HERE
+
+
+STORAGES = {
+
+    # Media file (image) management
+    "default": {
+        "BACKEND": "storages.backends.s3boto3.S3StaticStorage",
+    },
+    
+    # CSS and JS file management
+    "staticfiles": {
+        "BACKEND": "storages.backends.s3boto3.S3StaticStorage",
+        
+    },
+}
+
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+
+AWS_S3_FILE_OVERWRITE = False

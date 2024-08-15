@@ -36,9 +36,9 @@
                 <td>{% if i.is_staff %}<i class="fa fa-check text-success"></i>{% else %}<i class="fa fa-times text-danger"></i>{% endif %}</td>
                 <td>{% if i.is_superuser %}<i class="fa fa-check text-success"></i>{% else %}<i class="fa fa-times text-danger"></i>{% endif %}</td>
                 <td>
-                    <a href="{% url 'edit_user' i.pk %}"><i class="fa fa-edit text-success"></i></a>
+                    <a href="{% url 'edit_user' i.pk %}"><i class="fa fa-edit text-success" title="Edit"></i></a>
                     &nbsp;
-                    <a href="{% url 'delete_user' i.pk %}"><i class="fa fa-trash text-danger"></i></a>
+                    <a href="{% url 'delete_user' i.pk %}"><i class="fa fa-trash text-danger" title="Delete"></i></a>
                 </td>
               </tr>
               {% endfor %}
