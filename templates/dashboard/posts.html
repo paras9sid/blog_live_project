@@ -10,7 +10,7 @@
 <!-- right side context -->
     <div class="col-md-9">
         <h3>All Posts</h3>
-        <a href="{% url 'add_post' %}" class="btn btn-dark text-light float-right mb-2">Add New</a>
+        <a href="{% url 'add_post' %}" class="btn btn-dark text-light float-right mb-2" aria-disabled="true">Add New</a>
         <table class="table table-hover">
             <thead>
               <tr>
@@ -35,7 +35,7 @@
                 <td>
                     <a href="{% url 'edit_post' post.pk %}"><i class="fa fa-edit text-success" title="Edit"></i></a>
                     &nbsp;
-                    <a href="{% url 'delete_post' post.pk %}"><i class="fa fa-trash text-danger" title="Delete"></i></a>
+                    <a href="{% url 'delete_post' post.pk %}" aria-disabled="true"><i class="fa fa-trash text-danger" title="Delete"></i></a>
                 </td>
               </tr>
               {% endfor %}
