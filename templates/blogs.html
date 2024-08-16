@@ -43,7 +43,9 @@
                         {% endif %}
                         <br>
                         <div class="form-group">
+                           
                             {% if user.is_authenticated %}
+                            {% if perms.auth.view_user %}
                             <form action="" method="post">
                                 {% csrf_token %}
                                 <div class="form-group">
@@ -51,6 +53,7 @@
                                     <input type="submit" value="submit" class="btn btn-primary mt-2">
                                 </div>
                             </form>
+                            {% endif %}
                             {% else %}
                             <p>Please <span><a href="{% url 'login' %}">login</a></span> to write a comment..</p>
                             {% endif %}
