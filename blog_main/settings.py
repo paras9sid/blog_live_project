@@ -26,18 +26,21 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env('SECRET_KEY')
+SECRET_KEY = 'django-insecure-6wrg(u6a0r(dqp8z3^=jg#p*p&(5@^1_p5&yb_+b*&0nh+8l^j'
+
+
+# SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
+DEBUG = True
 
-# ALLOWED_HOSTS = []
+ALLOWED_HOSTS = []
 
 # CUSTOM 404 ERROR PAGE - will modify css static files and css will not load- When Deploy-Production server only
 
-DEBUG = False
+# DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+# ALLOWED_HOSTS = ['*']
 
 # CSRF_TRUSTED_ORIGINS = []
 
@@ -56,7 +59,7 @@ INSTALLED_APPS = [
     "crispy_forms",
     "crispy_bootstrap5",
     'dashboards',
-    'django_recaptcha',
+    # 'django_recaptcha',
     'pass_res',
     'storages',
     
@@ -71,8 +74,8 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 # Recaptcha
 
-RECAPTCHA_PUBLIC_KEY = env('RECAPTCHA_PUBLIC_KEY')
-RECAPTCHA_PRIVATE_KEY = env('RECAPTCHA_PRIVATE_KEY')
+# RECAPTCHA_PUBLIC_KEY = env('RECAPTCHA_PUBLIC_KEY')
+# RECAPTCHA_PRIVATE_KEY = env('RECAPTCHA_PRIVATE_KEY')
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -110,33 +113,33 @@ WSGI_APPLICATION = 'blog_main.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': env('DB_NAME'),
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': env('DB_NAME'),
+    }
+}
 
 # RDS / PostgreSQL database configuration
 
 
-DATABASES = {
+# DATABASES = {
 
-    'default': {
+#     'default': {
 
-        'ENGINE': 'django.db.backends.postgresql',
+#         'ENGINE': 'django.db.backends.postgresql',
 
-        'NAME': env('NAME'),
+#         'NAME': env('NAME'),
 
-        'USER': env('USER'),
+#         'USER': env('USER'),
 
-        'PASSWORD': env('PASSWORD'),
+#         'PASSWORD': env('PASSWORD'),
 
-        'HOST': env('HOST'),
+#         'HOST': env('HOST'),
 
-        'PORT': '5432',
-    }
-}
+#         'PORT': '5432',
+#     }
+# }
 
 
 # Password validation
@@ -198,15 +201,15 @@ MEDIA_ROOT = BASE_DIR /'media'
 
 # SMTP configuration for emails
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = '587'
-EMAIL_USE_TLS = 'True'
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_PORT = '587'
+# EMAIL_USE_TLS = 'True'
 
-EMAIL_HOST_USER = env('EMAIL_HOST_USER')    # gmail email address
-EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')     # APP password - gmail account in security below 2fa section
+# EMAIL_HOST_USER = env('EMAIL_HOST_USER')    # gmail email address
+# EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')     # APP password - gmail account in security below 2fa section
 
-DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL') # gmail email address
+# DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL') # gmail email address
 
 
 # AWS configuration
@@ -216,23 +219,23 @@ DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL') # gmail email address
 
 # Django 4.2 > Storage configuration for Amazon S3
 
-AWS_STORAGE_BUCKET_NAME = env('AWS_STORAGE_BUCKET_NAME') # - Enter your S3 bucket name HERE
+# AWS_STORAGE_BUCKET_NAME = env('AWS_STORAGE_BUCKET_NAME') # - Enter your S3 bucket name HERE
 
 
-STORAGES = {
+# STORAGES = {
 
-    # Media file (image) management
-    "default": {
-        "BACKEND": "storages.backends.s3boto3.S3StaticStorage",
-    },
+#     # Media file (image) management
+#     "default": {
+#         "BACKEND": "storages.backends.s3boto3.S3StaticStorage",
+#     },
     
-    # CSS and JS file management
-    "staticfiles": {
-        "BACKEND": "storages.backends.s3boto3.S3StaticStorage",
+#     # CSS and JS file management
+#     "staticfiles": {
+#         "BACKEND": "storages.backends.s3boto3.S3StaticStorage",
         
-    },
-}
+#     },
+# }
 
-AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+# AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 
-AWS_S3_FILE_OVERWRITE = False
+# AWS_S3_FILE_OVERWRITE = False
