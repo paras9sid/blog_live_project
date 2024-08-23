@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from blog_app.models import Blog
+from blog_app.models import Blog,Category
 from assignments.models import About
 from .forms import RegistrationForm
 from django.core.mail import send_mail
@@ -10,6 +10,9 @@ from django.contrib import auth
 
 
 def home(request):
+    
+    # categories = Category.objects.all()
+    # print(categories)
     
     featured_posts = Blog.objects.filter(is_featured = True,status='Published')
     # print(featured_posts)
